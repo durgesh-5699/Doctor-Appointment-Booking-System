@@ -19,7 +19,7 @@ const addDoctor = async (req, res) => {
         }
 
         //validating email
-        if(!validator.isEmail(email)){
+        if(!validator.isEmail(email)){ //!important
             return res.status(400).json({
                 success: false,
                 message: "Please enter a valid email"
@@ -38,8 +38,8 @@ const addDoctor = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, salt)
 
         //upload image to cloudinary
-        const imageUplaod = await cloudinary.uploader.upload(imageFile.path , {resource_type : "image"})
-        const imageURL = imageUplaod.secure_url 
+        const imageUplaod = await cloudinary.uploader.upload(imageFile.path , {resource_type : "image"}) //!important
+        const imageURL = imageUplaod.secure_url //!important
 
         const doctorData = {
             name,
@@ -55,8 +55,8 @@ const addDoctor = async (req, res) => {
             date : Date.now(),
         }
 
-        const newDoctor = new doctorModel(doctorData) 
-        await newDoctor.save()
+        const newDoctor = new doctorModel(doctorData) //!important
+        await newDoctor.save() //!important
 
         res.status(201).json({
             success: true,
@@ -78,7 +78,7 @@ const loginAdmin = async (req,res) =>{
     try{
         const {email,password} = req.body 
         if(email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD){
-            const token = jwt.sign(email+password , process.env.JWT_SECRET_KEY)
+            const token = jwt.sign(email+password , process.env.JWT_SECRET_KEY) //!important
             res.status(200).json({success : true ,token})
         }else{
             res.json({
