@@ -7,3 +7,11 @@
 .text-primary{
     color : #5f6fff ;
 }
+
+.border-primary{
+    color : #5f6fff
+}
+
+::-webkit-scrollbar{
+    @apply hidden 
+}
