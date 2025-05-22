@@ -27,7 +27,7 @@ const AddDoctor = () => {
         return toast.error('Please upload doctor image') ;
       }
 
-      const formData = new FormData()
+      const formData = new FormData() //!important
       formData.append('image',docImg)
       formData.append('name',name)
       formData.append('email',email)
@@ -44,7 +44,7 @@ const AddDoctor = () => {
         console.log(`${key} : ${value}`)
       })
 
-      const {data} = await axios.post(backend_url+'/api/admin/add-doctor',formData,{headers:{aToken}})
+      const {data} = await axios.post(backend_url+'/api/admin/add-doctor',formData,{headers:{aToken}}) //!important
 
       if(data.success){
         toast.success(data.message)
@@ -73,7 +73,7 @@ const AddDoctor = () => {
       <div className="bg-white px-8 py-8 border rounded w-full max-w-4xl max-h-[80vh] overflow-y-scroll">
         <div className="flex items-center gap-4 mb-8 text-gray-500">
           <label htmlFor="doc-img">
-            <img className="w-16 bg-gray-100 rounded-full cursor-pointer" src={docImg ? URL.createObjectURL(docImg) : assets.upload_area} alt="" />
+            <img className="w-16 bg-gray-100 rounded-full cursor-pointer" src={docImg ? URL.createObjectURL(docImg) : assets.upload_area} alt="" /> {/* //! important */}
           </label>
           <input onChange={(e)=>setDocImg(e.target.files[0])} type="file" id="doc-img" hidden />
           <p>
@@ -147,7 +147,7 @@ const AddDoctor = () => {
           <textarea onChange={(e)=>setAbout(e.target.value)} value={about} className="w-full px-4 pt-2 border rounded" placeholder="write about doctor" rows={5} required />
         </div>
 
-        <button type="submit" className="bg-primary px-10 py-3 mt-4 text-white rounded-full">Add Doctor</button>
+        <button type="submit" className="bg-primary px-10 py-3 mt-4 text-white rounded-full cursor-pointer">Add Doctor</button>
       </div>
     </form>
   );

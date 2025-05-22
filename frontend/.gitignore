@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 revise.js
+.env
 
 # Editor directories and files
 .vscode/*
