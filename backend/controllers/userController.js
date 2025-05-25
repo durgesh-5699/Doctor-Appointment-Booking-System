@@ -3,6 +3,8 @@ import bcrypt, { hash } from 'bcrypt';
 import UserModel from '../models/userModel.js';
 import jwt from 'jsonwebtoken';
 import { v2 as cloudinary } from 'cloudinary';
+import doctorModel from '../models/doctorModel.js';
+import appointmentModel from '../models/appointmentModel.js';
 
 
 //Api to register user
@@ -111,4 +113,58 @@ const updateProfile = async(req,res)=>{
     }
 }
 
-export {registerUser,loginUSer,getProfile,updateProfile}
+//Api to book appointment
+const bookAppointment = async(req,res)=>{
+    try{
+        const {docId , slotDate , slotTime} = req.body
+        const userId = req.userId ;
+        
+        const docData = await doctorModel.findById(docId).select("-password")
+
+        if(!docData.available){
+            return res.json({success:false , message:'Doctor not available'})
+        }
+
+        let slotsBooked = docData.slotsBooked
+
+        if(slotsBooked[slotDate]){
+            if(slotsBooked[slotDate].includes(slotTime)){
+                return res.json({success:false , message:'Doctor not available'})
+            }else{
+                slotsBooked[slotDate].push(slotTime) ;
+            }
+        }else{
+            slotsBooked[slotDate] = [] ;
+            slotsBooked[slotDate].push(slotTime)
+        }
+
+        const userData = await UserModel.findById(userId).select("-password")
+
+        delete docData.slots_booked 
+
+        const appointmentData = {
+            userId ,
+            docId ,
+            userData ,
+            docData ,
+            amount : docData.fees ,
+            slotDate ,
+            slotTime ,
+            date : Date.now()
+        }
+
+        const newAppointment = new appointmentModel(appointmentData)
+        await newAppointment.save()
+
+        await doctorModel.findByIdAndUpdate(docId , {slotsBooked} )
+
+        res.json({success: true , message : "Appointment Booked"})
+
+    }catch(error){
+        console.log(error)
+        res.json({success:false , message : error.message})
+    }
+}
+
+
+export {registerUser,loginUSer,getProfile,updateProfile,bookAppointment}
