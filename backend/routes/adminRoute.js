@@ -10,5 +10,8 @@ adminRouter.route('/add-doctor').post(authAdmin,upload.single('image'), adminCon
 adminRouter.route("/login").post(adminController.loginAdmin)
 adminRouter.route("/all-doctors").post(authAdmin ,adminController.allDoctors)
 adminRouter.route("/change-availability").post(authAdmin,changeAvailability)
+adminRouter.route("/appointments").get(authAdmin,adminController.appointmentsAdmin)
+adminRouter.route("/cancel-appointment").post(authAdmin,adminController.appointmentCancel)
+adminRouter.route("/dashboard").get(authAdmin,adminController.adminDashboard)
 
 export default adminRouter

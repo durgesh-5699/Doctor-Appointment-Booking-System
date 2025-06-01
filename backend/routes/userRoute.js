@@ -12,5 +12,7 @@ userRouter.route('/update-profile').post(upload.single('image'), authUser, userC
 userRouter.route("/book-appointment").post(authUser,userController.bookAppointment)
 userRouter.route("/appointments").get(authUser,userController.listAppointment)
 userRouter.route("/cancel-appointment").post(authUser,userController.cancelAppointment)
+userRouter.route("/payment-razorpay").post(authUser,userController.paymentRazorPay)
+userRouter.route("/verifyRazorpay").post(authUser,userController.verifyRazorpay)
 export default userRouter
 
