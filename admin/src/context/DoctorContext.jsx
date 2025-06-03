@@ -5,7 +5,7 @@ import axios from 'axios'
 export const DoctorContext = createContext();
 
 export const DoctorContextProvider = (props) => {
-  const backend_url = import.meta.env.VITE_BACKEND_URL;
+  const backend_url = 'https://doc-appointment-booking-system-backend.onrender.com'
 
   const [dToken, setDToken] = useState(localStorage.getItem("dToken") || "");
   const [appointments, setAppointments] = useState([]);
