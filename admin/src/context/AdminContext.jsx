@@ -11,7 +11,7 @@ export const AdminContextProvider = (props) => {
     const [appointments,setAppointment] = useState([])
     const [dashData,setDashData] = useState({})
 
-    const backend_url = import.meta.env.VITE_BACKEND_URL 
+    const backend_url = 'https://doc-appointment-booking-system-backend.onrender.com'
     
         const getAllDoctors = async ()=>{
             try{
