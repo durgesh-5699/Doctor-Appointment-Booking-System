@@ -7,7 +7,11 @@ const DoctorsList = () => {
   useEffect(()=>{
     if(aToken){
       getAllDoctors() 
+
+      const interval = setInterval(getAllDoctors(),3000)
+      return clearInterval(interval)
     }
+    return ()=>{}
   },[aToken])
   return (
     <div className='m-5 max-h-[90vh] overflow-y-scroll'>

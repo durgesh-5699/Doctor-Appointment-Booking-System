@@ -3,29 +3,40 @@ import {assets} from '../assets/assets.js'
 import { AdminContext } from '../context/AdminContext.jsx';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { DoctorContext } from '../context/DoctorContext.jsx';
+import {useNavigate} from 'react-router-dom'
 
 export const Login = () => {
 
     const [state , setState] = useState('Admin') ;
     const [email,setEmail] = useState('') ;
     const [password,setPassword] = useState('') ;
+    const navigate = useNavigate()
 
-    const {aToken,setAToken,backend_url} = useContext(AdminContext) ;
+    const {setAToken,backend_url} = useContext(AdminContext) ;
+    const {setDToken} = useContext(DoctorContext)
 
     const onSubmitHandler = async(e)=>{
         e.preventDefault() ;
         try {
             if(state=='Admin'){
                 const {data} = await axios.post(backend_url + '/api/admin/login' , {email,password})
-                console.log(data) ;
                 if(data.success){
                     localStorage.setItem('aToken',data.token) ;
                     setAToken(data.token)
+                    navigate('/admin-dashboard')
                 }else{
                     toast.error(data.message)
                 }
             }else{
-
+                const {data} = await axios.post(backend_url + "/api/doctor/login" , {email,password})
+                if(data.success){
+                    localStorage.setItem('dToken',data.token) ;
+                    setDToken(data.token)
+                     navigate('/doctor-dashboard')
+                }else{
+                    toast.error(data.message)
+                }
             }
         } catch (error) {
             

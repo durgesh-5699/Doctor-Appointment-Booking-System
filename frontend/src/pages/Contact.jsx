@@ -1,12 +1,12 @@
-import React from "react";
 import { assets } from "../assets/assets.js";
+import {toast} from 'react-toastify'
 
 const Contact = () => {
   return (
     <div>
       <div className="text-center text-2xl pt-10 text-gray-500">
         <p>
-          Contact <span>US</span>
+          Contact <span className="text-gray-700 font-medium">US</span>
         </p>
       </div>
 
@@ -24,7 +24,7 @@ const Contact = () => {
           </p>
           <p className="font-semibold text-lg text-gray-600"> Carriers at PRISCRIPTO</p>
           <p className="text-gray-500">learn about our teams and job openings</p>
-          <button className="border border-black px-8 py-4 text-sm hover:bg-black hover:text-white transition-all duration-500">Explore Jobs</button>
+          <button onClick={()=>toast.info('Sorry, no Vacancy Available')} className="border border-black px-8 py-4 text-sm hover:bg-black hover:text-white transition-all duration-500">Explore Jobs</button>
         </div>
 
       </div>

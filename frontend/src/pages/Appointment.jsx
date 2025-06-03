@@ -129,10 +129,6 @@ const Appointment = () => {
     getAvailableSlots();
   }, [docInfo]);
 
-  useEffect(() => {
-    console.log(docSlots);
-  }, [docSlots]);
-
   return (
     docInfo && (
       <div>
@@ -185,7 +181,7 @@ const Appointment = () => {
           <p>Booking Slot</p>
           <div className="flex gap-3 items-center w-full overflow-x-scroll mt-4">
             {docSlots.length &&
-              docSlots.map((item, index) => (
+              docSlots?.map((item, index) => (
                 <div
                   onClick={() => setSlotIndex(index)}
                   className={`text-center py-6 min-w-16 rounded-full cursor-pointer ${
@@ -203,7 +199,7 @@ const Appointment = () => {
 
           <div className="flex items-center gap-3 w-full overflow-x-scroll mt-4">
             {docSlots.length &&
-              docSlots[slotIndex].map((item, index) => (
+              docSlots[slotIndex]?.map((item, index) => (
                 <p
                   onClick={() => setSlotTime(item.time)}
                   className={`text-sm font-length flex-shrink-0 px-5 py-2 rounded-full cursor-pointer ${
