@@ -44,6 +44,6 @@ A full-stack web application designed to streamline the process of booking and m
 ---
 
 ## 📁 Folder Structure
--admin
--frontend
--backend
+- admin
+- frontend
+- backend
