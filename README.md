@@ -46,10 +46,15 @@ A full-stack web application designed to streamline the process of booking and m
 ## 📁 Folder Structure
 📦 Doctor-Appointment-System/
 ├── 🎨 frontend/ # Patient-facing React application
+|
 ├── 🛡️ admin/ # Administrative panel
+|
 ├── ⚙️ backend/ # Express.js API server
+|
 ├── 📊 models/ # MongoDB data schemas
+|
 ├── 🔐 middlewares/ # Authentication & validation
+|
 └── 🎯 controllers/ # Business logic handlers
 
 ### Installation  
@@ -60,17 +65,20 @@ A full-stack web application designed to streamline the process of booking and m
    cd Doctor-Appointment-Booking-System
    
 2. **Backend Setup**
+   ```bash 
    cd backend  
    npm install  
    # Configure environment variables
    npm start
 
-3. **Frontend Setup**
+4. **Frontend Setup**
+   ```bash 
    cd frontend  
    npm install  
    npm run dev
 
 3. **Admin Panel Setup**
+   ```bash 
    cd admin  
    npm install  
    npm run dev
