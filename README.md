@@ -44,7 +44,7 @@ A full-stack web application designed to streamline the process of booking and m
 ---
 
 ## 📁 Folder Structure
-
+```
 📦 Doctor-Appointment-System/
 ├── 🎨 frontend/ # Patient-facing React application
 ├── 🛡️ admin/ # Administrative panel
@@ -52,6 +52,7 @@ A full-stack web application designed to streamline the process of booking and m
 ├── 📊 models/ # MongoDB data schemas
 ├── 🔐 middlewares/ # Authentication & validation
 └── 🎯 controllers/ # Business logic handlers
+```
 
 ### Installation  
   
