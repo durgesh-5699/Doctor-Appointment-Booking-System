@@ -15,8 +15,8 @@ connectDB()
 connectCloudinary()
 
 //middleware
-app.use(express.json())  //? bhai jason data smjhne layak ban ja
-app.use(cors()) //? frontend or backend ko connect krne k liye
+app.use(express.json())  
+app.use(cors()) 
 
 //api endpoints
 app.use('/api/admin' , adminRouter)
